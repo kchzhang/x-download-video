@@ -18,7 +18,16 @@
       "run_at": "document_end"
     }
   ],
-  "permissions": ["storage"],
+  "permissions": ["storage", "downloads"],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://api.vxtwitter.com/*",
+    "https://api.fxtwitter.com/*",
+    "https://d.fixupx.com/*",
+    "https://d.fxtwitter.com/*",
+    "https://video.twimg.com/*",
+    "https://pbs.twimg.com/*"
+  ],
   "web_accessible_resources": [
     {
       "resources": [

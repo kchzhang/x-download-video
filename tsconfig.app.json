@@ -15,5 +15,6 @@
       "@/*": ["src/*"]
     }
   },
+  "types": ["chrome"],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
