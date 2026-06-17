@@ -39,6 +39,16 @@
   ],
   "action": {
     "default_popup": "index.html",
-    "default_title": "x-download-video"
+    "default_title": "x-download-video",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
   }
 }
