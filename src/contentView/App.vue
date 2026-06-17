@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import FloatingWindow from "./components/FloatingWindow.vue";
 import VideoDownloader from "./components/VideoDownloader.vue";
 

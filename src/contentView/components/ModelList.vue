@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { getModelStore, deleteModel, setActiveModel } from '@/utils/modelStorage';
-import { PROVIDER_PRESETS, maskApiKey, type ModelConfig, type ModelConfigStore } from '@/types/model';
+import { PROVIDER_PRESETS, maskApiKey, type ModelConfigStore } from '@/types/model';
 import { IconMonitor, IconPlus, IconCheck, IconEdit, IconTrash } from '@/icons';
 
 const emit = defineEmits<{

@@ -24,6 +24,7 @@ export class ChatClient {
   ): AsyncGenerator<ChatChunkData, void, undefined> {
     this.abortController = new AbortController();
     const signal = options?.signal ?? this.abortController.signal;
+    let fullText = '';
 
     try {
       const response = await fetch(this.buildUrl(), {
@@ -42,7 +43,6 @@ export class ChatClient {
       if (!reader) throw new Error('无法获取响应流');
 
       const decoder = new TextDecoder();
-      let fullText = '';
       let buffer = '';
 
       while (true) {
@@ -93,7 +93,7 @@ export class ChatClient {
     } catch (err) {
       // 主动取消：yield 取消标记后优雅退出
       if (signal.aborted) {
-        yield { done: true, cancelled: true, fullText };
+        yield { done: true, cancelled: true, fullText: fullText };
         return;
       }
       throw err;

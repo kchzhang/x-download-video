@@ -27,12 +27,14 @@ export interface ParsedUrl {
  * 解析 X 链接，提取关键信息
  */
 export function parseXUrl(url: string): ParsedUrl | null {
+  // 格式1: x.com/username/status/123/video/1
+  // 格式2: x.com/i/status/123/video/1 (无 username，从页面 DOM 提取时使用)
   const match = url.match(
-    /x\.com\/([\w]+)\/status\/(\d+)(?:\/(video|photo)\/(\d+))?/i
+    /x\.com\/(?:([\w]+)|i)\/status\/(\d+)(?:\/(video|photo)\/(\d+))?/i
   );
   if (!match) return null;
 
-  const username = match[1];
+  const username = match[1] || "i";
   const tweetId = match[2];
   const mediaType = (match[3] as MediaType) || "video";
   const mediaIndex = match[4] ? parseInt(match[4], 10) : 1;

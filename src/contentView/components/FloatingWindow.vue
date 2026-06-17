@@ -94,7 +94,7 @@ function handleReopen() {
   </div>
 
   <!-- 浮动窗口 -->
-  <div v-if="visible" class="block font-sans bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] overflow-hidden select-none" :style="windowStyle">
+  <div v-if="visible" class="block font-sans bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] overflow-hidden select-none border border-slate-200" :style="windowStyle">
     <div
       class="flex items-center justify-between h-11 px-4 bg-slate-50 cursor-move select-none"
       @mousedown="onHeaderMouseDown"
