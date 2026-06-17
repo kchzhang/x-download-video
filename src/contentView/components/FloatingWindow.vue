@@ -25,7 +25,7 @@ const props = withDefaults(
   }
 );
 
-const visible = ref(true);
+const visible = ref(false);
 const minimized = ref(false);
 
 const posX = ref(0);
