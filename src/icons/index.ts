@@ -12,3 +12,5 @@ export { default as IconMaximize } from './IconMaximize.vue';
 export { default as IconClose } from './IconClose.vue';
 export { default as IconSidebar } from './IconSidebar.vue';
 export { default as IconResize } from './IconResize.vue';
+export { default as IconDownload } from './IconDownload.vue';
+export { default as IconGrok } from './IconGrok.vue';

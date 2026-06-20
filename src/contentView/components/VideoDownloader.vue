@@ -148,11 +148,11 @@ function reset() {
   <div class="block font-[inherit]">
     <!-- 标题 -->
     <div class="flex items-center gap-2 mb-4">
-      <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center flex-shrink-0">
+      <!-- <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center flex-shrink-0">
         <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
         </svg>
-      </div>
+      </div> -->
       <div>
         <p class="text-base font-semibold text-gray-800">X 媒体下载器</p>
         <p class="text-xs text-gray-400">粘贴链接，一键下载视频/图片</p>

@@ -115,7 +115,7 @@ function handleReopen() {
       </div>
     </div>
     <div v-show="!minimized" class="block h-[1px] bg-slate-200/60"></div>
-    <div v-show="!minimized" class="block p-4 h-[calc(100%-52px)] overflow-y-auto text-sm text-gray-700 leading-relaxed box-border select-text">
+    <div v-show="!minimized" class="block p-4 h-[calc(100%)] overflow-y-auto text-sm text-gray-700 leading-relaxed box-border select-text">
       <slot></slot>
     </div>
     <!-- 右下角拉伸手柄 -->

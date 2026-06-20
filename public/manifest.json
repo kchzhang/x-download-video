@@ -15,16 +15,27 @@
       "run_at": "document_end"
     }
   ],
-  "permissions": ["storage", "downloads"],
+  "permissions": ["storage", "downloads", "declarativeNetRequest"],
   "host_permissions": [
     "https://x.com/*",
+    "https://twitter.com/*",
     "https://api.vxtwitter.com/*",
     "https://api.fxtwitter.com/*",
     "https://d.fixupx.com/*",
     "https://d.fxtwitter.com/*",
     "https://video.twimg.com/*",
-    "https://pbs.twimg.com/*"
+    "https://pbs.twimg.com/*",
+    "https://abs.twimg.com/*"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules_remove_frame_options",
+        "enabled": true,
+        "path": "rules_remove_frame_options.json"
+      }
+    ]
+  },
   "web_accessible_resources": [
     {
       "resources": [
