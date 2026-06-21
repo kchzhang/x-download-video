@@ -5,6 +5,7 @@ import { createGrokConversation, sendGrokMessage } from "@/utils/grokApi";
 const conversationId = ref("");
 const messageText = ref("");
 const resultLog = ref<string[]>([]);
+const streamingText = ref("");
 const loading = ref(false);
 const transactionIdInput = ref("");
 
@@ -37,12 +38,15 @@ async function sendMessage() {
     return;
   }
   loading.value = true;
+  streamingText.value = "";
+  resultLog.value = [];
   addLog(`>>> 发送消息: ${messageText.value}`);
   try {
     for await (const chunk of sendGrokMessage({
       conversationId: conversationId.value,
       message: messageText.value,
     })) {
+      streamingText.value += chunk;
       addLog(chunk);
     }
     addLog("✅ 完成");
@@ -114,6 +118,14 @@ function clearLog() {
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
         ></iframe>
       </div>
+    </div>
+
+    <!-- 流式输出 -->
+    <div class="relative">
+      <div
+        class="bg-white rounded-md p-3 text-sm border border-slate-200 overflow-y-auto max-h-[320px] whitespace-pre-wrap leading-relaxed"
+        v-html="streamingText"
+      ></div>
     </div>
 
     <!-- 结果日志 -->
