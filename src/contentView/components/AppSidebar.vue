@@ -31,7 +31,7 @@ function handleSelect(key: string) {
     <button
       v-for="item in items"
       :key="item.key"
-      class="sidebar-item group relative flex flex-col items-center justify-center w-5 h-5 rounded-md transition-all duration-150 mb-1"
+      class="sidebar-item group relative flex flex-col items-center justify-center w-5 h-5 rounded-md transition-all duration-150 mb-2"
       :class="item.key === activeKey
         ? 'bg-sky-500 text-white shadow-sm'
         : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'"

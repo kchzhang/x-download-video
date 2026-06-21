@@ -3,6 +3,8 @@ import { createApp } from "vue";
 import "@/styles/tailwind.css";
 import APP from "./App.vue";
 import { handleParseVideo, silentDownload } from "@/utils/xVideoApi";
+import { extractBearerToken } from "@/utils/extractBearerToken";
+import { setAuthBearer } from "@/utils/grokApi";
 
 // 向目标页面注入 insert script
 try {
@@ -246,4 +248,9 @@ async function handleDevDownload(data: Record<string, any>) {
 
   const app = createApp(APP);
   app.mount(mountPoint);
+
+  // 动态提取 Bearer token（异步，不阻塞 UI）
+  extractBearerToken().then((bearer) => {
+    if (bearer) setAuthBearer(bearer);
+  });
 })();

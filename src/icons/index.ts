@@ -14,3 +14,4 @@ export { default as IconSidebar } from './IconSidebar.vue';
 export { default as IconResize } from './IconResize.vue';
 export { default as IconDownload } from './IconDownload.vue';
 export { default as IconGrok } from './IconGrok.vue';
+export { default as IconPersona } from './IconPersona.vue';

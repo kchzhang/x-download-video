@@ -6,8 +6,9 @@ import type { MenuItem } from "./components/AppSidebar.vue";
 import VideoDownloader from "./components/VideoDownloader.vue";
 import ModelList from "./components/ModelList.vue";
 import ModelConfigForm from "./components/ModelConfigForm.vue";
-import { IconDownload, IconSettings, IconGrok } from "@/icons";
+import { IconDownload, IconSettings, IconGrok, IconPersona } from "@/icons";
 import GrokChat from "./components/GrokChat.vue";
+import PersonaDecoder from "./components/PersonaDecoder.vue";
 
 onMounted(() => {
   console.log("Content script app mounted");
@@ -19,6 +20,7 @@ const menuItems: MenuItem[] = [
   { key: "video-download", label: "视频下载", icon: IconDownload },
   { key: "model-config", label: "模型配置", icon: IconSettings },
   { key: "grok-chat", label: "Grok 对话", icon: IconGrok },
+  { key: "persona-decoder", label: "人设解码器", icon: IconPersona },
 ];
 
 const windowTitle = computed(() => {
@@ -26,6 +28,7 @@ const windowTitle = computed(() => {
     "video-download": "X 视频下载器",
     "model-config": "模型配置",
     "grok-chat": "Grok 对话测试",
+    "persona-decoder": "人设解码器",
   };
   return map[activeTab.value] ?? "X 视频下载器";
 });
@@ -60,6 +63,9 @@ function handleModelFormBack() {
 
         <!-- Grok 对话 -->
         <GrokChat v-else-if="activeTab === 'grok-chat'" />
+
+        <!-- 人设解码器 -->
+        <PersonaDecoder v-else-if="activeTab === 'persona-decoder'" />
 
         <!-- 模型配置 -->
         <template v-else-if="activeTab === 'model-config'">
