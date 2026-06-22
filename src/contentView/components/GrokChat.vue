@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { createGrokConversation, sendGrokMessage } from "@/utils/grokApi";
+import { Stream } from "@knoxzhang/streamup";
 
 const conversationId = ref("");
 const messageText = ref("");
@@ -8,6 +9,8 @@ const resultLog = ref<string[]>([]);
 const streamingText = ref("");
 const loading = ref(false);
 const transactionIdInput = ref("");
+const isStreaming = computed(() => loading.value && streamingText.value.length > 0);
+const showMd = computed(() => streamingText.value.length > 0);
 
 function addLog(msg: string) {
   resultLog.value.push(msg);
@@ -108,7 +111,7 @@ function clearLog() {
     </div>
 
     <!-- iframe 嵌套测试 -->
-    <div v-if="conversationId" class="flex flex-col gap-1">
+    <!-- <div v-if="conversationId" class="flex flex-col gap-1">
       <label class="text-xs text-slate-400">Grok 对话页面 (iframe)</label>
       <div class="relative rounded-md border border-slate-200 overflow-hidden" style="height: 280px">
         <iframe
@@ -118,15 +121,18 @@ function clearLog() {
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
         ></iframe>
       </div>
-    </div>
+    </div> -->
 
     <!-- 流式输出 -->
-    <div class="relative">
-      <div
-        class="bg-white rounded-md p-3 text-sm border border-slate-200 overflow-y-auto max-h-[320px] whitespace-pre-wrap leading-relaxed"
-        v-html="streamingText"
-      ></div>
-    </div>
+    <Stream
+      v-if="showMd"
+      :source="streamingText"
+      :streaming="isStreaming"
+      :smooth-speed="1"
+      :auto-scroll="true"
+      virtual
+      class="demo-stream"
+    />
 
     <!-- 结果日志 -->
     <div class="relative">
@@ -147,3 +153,13 @@ function clearLog() {
     </div>
   </div>
 </template>
+
+<style>
+@import "streamup-css";
+@import "@/styles/markdown.css";
+
+.demo-stream {
+  max-height: 320px;
+  overflow-y: auto;
+}
+</style>

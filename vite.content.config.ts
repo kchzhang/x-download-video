@@ -37,7 +37,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "streamup-css": path.resolve(__dirname, "node_modules/@knoxzhang/streamup/dist/streamup.css"),
     },
+    dedupe: ["@tanstack/vue-virtual"],
   },
   define: {
     "process.env.NODE_ENV": null,
