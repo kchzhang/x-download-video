@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue';
 import { extractScreenName, fetchUserByScreenName, fetchUserTweets } from '@/utils/xUserApi';
 import { analyzePersona } from '@/utils/personaAnalyzer';
-import { Stream } from '@knoxzhang/streamup';
 import type { XUserInfo } from '@/types/persona';
 
 type Phase = 'idle' | 'fetching-user' | 'fetching-tweets' | 'analyzing' | 'done' | 'error';
@@ -27,7 +26,7 @@ const phaseLabel: Record<Phase, string> = {
 
 const isBusy = ref(false);
 const showMd = computed(() => resultText.value.length > 0);
-const isStreaming = computed(() => phase.value === 'analyzing');
+
 
 async function handleAnalyze() {
   const screenName = extractScreenName(inputText.value);
@@ -167,15 +166,10 @@ function formatCount(n: number): string {
       >
         清除
       </button>
-      <Stream
+      <pre
         v-if="showMd"
-        :source="resultText"
-        :streaming="isStreaming"
-        :smooth-speed="1"
-        :auto-scroll="true"
-        virtual
-        class="persona-stream"
-      />
+        class="persona-result whitespace-pre-wrap break-words text-sm text-slate-700 bg-slate-50 rounded-md p-3 max-h-[320px] overflow-y-auto"
+      >{{ resultText }}</pre>
     </div>
 
     <!-- 空状态 -->
@@ -189,10 +183,7 @@ function formatCount(n: number): string {
 </template>
 
 <style>
-@import "streamup-css";
-@import "@/styles/markdown.css";
-
-.persona-stream {
+.persona-result {
   height: 320px;
   overflow-y: auto;
   border-radius: 0.375rem;

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { createGrokConversation, sendGrokMessage } from "@/utils/grokApi";
-import { Stream } from "@knoxzhang/streamup";
 
 const conversationId = ref("");
 const messageText = ref("");
@@ -9,8 +8,7 @@ const resultLog = ref<string[]>([]);
 const streamingText = ref("");
 const loading = ref(false);
 const transactionIdInput = ref("");
-const isStreaming = computed(() => loading.value && streamingText.value.length > 0);
-const showMd = computed(() => streamingText.value.length > 0);
+
 
 function addLog(msg: string) {
   resultLog.value.push(msg);
@@ -124,15 +122,10 @@ function clearLog() {
     </div> -->
 
     <!-- 流式输出 -->
-    <Stream
-      v-if="showMd"
-      :source="streamingText"
-      :streaming="isStreaming"
-      :smooth-speed="1"
-      :auto-scroll="true"
-      virtual
-      class="demo-stream"
-    />
+    <pre
+      v-if="streamingText"
+      class="demo-result whitespace-pre-wrap break-words text-sm text-slate-700 bg-slate-50 rounded-md p-3 max-h-[320px] overflow-y-auto"
+    >{{ streamingText }}</pre>
 
     <!-- 结果日志 -->
     <div class="relative">
@@ -155,10 +148,7 @@ function clearLog() {
 </template>
 
 <style>
-@import "streamup-css";
-@import "@/styles/markdown.css";
-
-.demo-stream {
+.demo-result {
   max-height: 320px;
   overflow-y: auto;
 }
